@@ -1,13 +1,25 @@
 // src/components/ItemDetail.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import ItemQuantitySelector from './ItemQuantitySelector';
 import AddItemButton from './AddItemButton';
 import Description from './Description';
 
 const ItemDetail = ({ item }) => {
+  const [cart, setCart] = useState([]);
+
   const handleAddToCart = (quantity) => {
-    // Aquí puedes implementar la lógica para agregar el item al carrito
-    console.log(`Agregando ${quantity} unidades de ${item.name} al carrito.`);
+    const newItem = {
+      id: item.id,
+      name: item.name,
+      quantity: quantity,
+      price: item.price,
+    };
+
+    // Actualizar el estado del carrito
+    setCart([...cart, newItem]);
+
+    // Mensaje de confirmación
+    console.log(`Agregado ${quantity} ${item.name} al carrito.`);
   };
 
   return (
